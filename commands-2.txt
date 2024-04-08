@@ -1,0 +1,64 @@
+npm i
+env $(cat .env) npx sequelize db:drop
+env $(cat .env) npx sequelize db:create
+env $(cat .env) npx sequelize db:migrate
+env $(cat .env) npx sequelize db:seed:all
+
+1 _______
+CRIANDO A MIGRATION de MODULE 
+
+npx sequelize migration:generate --name create-module
+env $(cat .env) npx sequelize-cli db:migrate
+
+2 _______
+CRIANDO A MIGRATION de COURSE-MODULE
+
+npx sequelize migration:generate --name create-course-module-table
+env $(cat .env) npx sequelize-cli db:migrate
+
+3 _______
+Criando o MODEL de Module
+/src/model/module.js
+
+4 _______
+Criando o MODEL de CourseModule
+/src/model/courseModule.js
+
+5 _______
+Criando o SEED de Modules
+npx sequelize seed:generate --name modules
+env $(cat .env) sequelize db:seed --seed 20240408155507-modules.js
+
+6 ______
+Criando o SEED de Course Modules
+npx sequelize seed:generate --name course-modules
+env $(cat .env) sequelize db:seed --seed 20240408160127-course-modules.js
+
+7 _________________________
+Modificando o SERVICE de Course e Student
+course.service.js
+
+
+Exemplo objeto
+
+{
+		"name": "IA Futuro",
+		"description": "IA",
+		"creationDate": "2019-06-01T00:00:00.000Z",
+		"active": true,
+		"duration": 12,
+		"modules": [
+			{
+				"name": "módulo 1",
+				"description": "módulo 1",
+				"duration": "4",
+				"qtBlock": "2"
+			},
+			{
+				"name": "módulo 2",
+				"description": "módulo 2",
+				"duration": "4",
+				"qtBlock": "2"
+			}
+		]
+}

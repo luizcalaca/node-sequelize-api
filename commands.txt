@@ -1,0 +1,34 @@
+npm i
+env $(cat .env) npx sequelize db:drop
+env $(cat .env) npx sequelize db:create
+env $(cat .env) npx sequelize db:migrate
+env $(cat .env) npx sequelize db:seed:all
+
+1 _______
+CRIANDO A MIGRATION de STUDENT 
+
+npx sequelize migration:generate --name create-students
+env $(cat .env) npx sequelize-cli db:migrate
+2 _______
+CRIANDO O MODEL
+src/models/student.js
+
+3 _______
+ADICIONANDO A ASSOCIAÇÃO
+
+npx sequelize migration:generate --name create-column-idCourse-students-table
+env $(cat .env) npx sequelize-cli db:migrate
+4 _______
+SEED de STUDENT 
+
+npx sequelize seed:generate --name students
+
+5 ______
+Vamos alterar o GETSERVILCES de idCourse
+
+const getCourses = async () => Course.findAll({ include: [{ model: Student, as: 'students' }] });
+
+6 ________
+
+
+
