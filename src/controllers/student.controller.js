@@ -12,6 +12,12 @@ const getStudents = async (_req, res) => {
   return res.status(200).json(students);
 };
 
+const loginStudent = async (req, res) => {
+  const student = await studentService.login(req.body);
+  
+  return res.status(200).json(student);
+};
+
 module.exports = {
-  getStudents, createStudent,
+  getStudents, createStudent, loginStudent,
 };

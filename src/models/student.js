@@ -4,7 +4,8 @@ const StudentSchema = (sequelize, DataTypes) => {
         email: DataTypes.STRING,
         birthday: DataTypes.DATE,
         active: DataTypes.BOOLEAN,
-        idCourse: DataTypes.INTEGER
+        idCourse: DataTypes.INTEGER,
+        password: DataTypes.STRING,
       },
       {
         tableName: 'students',
